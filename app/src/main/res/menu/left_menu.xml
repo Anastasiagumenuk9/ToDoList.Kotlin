@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toDoListFragment"
+        android:title="My List"
+        />
+
+    <item
+        android:id="@+id/createTaskFragment"
+        android:title="Add Task"
+        />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Setting"
+        />
+
+    <item
+        android:id="@+id/detail"
+        android:title="Detail"
+        >
+        <menu>
+            <item
+                android:id="@+id/termsFragment"
+                android:title="Terms of Service"
+                />
+            <item
+                android:id="@+id/aboutFragment"
+                android:title="About"
+                />
+        </menu>
+    </item>
+
+</menu>

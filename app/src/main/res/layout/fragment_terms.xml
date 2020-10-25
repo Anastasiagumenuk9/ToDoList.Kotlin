@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TermsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/termsConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="283dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="33dp"
+            android:text="Terms of Service"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="295dp"
+            android:layout_height="471dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="192dp"
+            android:text="You may not copy, modify, distribute, sell, or lease any part of our services or software. Also, you may not reverse engineer or attempt to extract any of our source code unless you have our written permission or applicable law lets you do so."
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
