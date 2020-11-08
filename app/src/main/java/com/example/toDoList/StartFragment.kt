@@ -1,11 +1,15 @@
 package com.example.toDoList
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Vibrator
 import android.view.*
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_start.*
 import kotlinx.android.synthetic.main.fragment_start.view.*
@@ -13,12 +17,17 @@ import kotlinx.android.synthetic.main.fragment_start.view.*
 
 class StartFragment : Fragment() {
 
-    var counter = 0
+    private lateinit var viewModel: StartViewModel
+    private lateinit var viewModelFactory: StartViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        viewModelFactory = StartViewModelFactory()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(StartViewModel::class.java)
+
         val binding: com.example.toDoList.databinding.FragmentStartBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_start, container, false
         )
@@ -27,16 +36,14 @@ class StartFragment : Fragment() {
         }
 
         binding.button2.setOnClickListener { v: View ->
-            onClickCounter()
+            viewModel.onClickCounter(textView6)
         }
 
+        viewModel.counter.observe(this, Observer { newCounter ->
+            binding.textView6.text = viewModel.counter.toString()
+        })
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    private fun onClickCounter(){
-        counter++
-        textView6.text = counter.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -64,4 +71,17 @@ class StartFragment : Fragment() {
     private fun shareSuccess() {
         getShareIntent()
     }
+
+/*    private fun buzz(pattern: LongArray) {
+        val buzzer = activity?.getSystemService<Vibrator>()
+
+        buzzer?.let {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                buzzer.vibrate(VibrationEffect.createWaveform(pattern, -1))
+            } else {
+                //deprecated in API 26
+                buzzer.vibrate(pattern, -1)
+            }
+        }
+    }*/
 }
