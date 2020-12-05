@@ -1,12 +1,7 @@
-package com.example.toDoList
+package com.example.start
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import android.widget.EditText
-import android.widget.TextView
-import androidx.core.text.trimmedLength
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -17,15 +12,16 @@ import androidx.navigation.ui.NavigationUI
 import com.example.timer.ActiveTimer
 import com.example.timer.DestroyTimer
 import com.example.timer.MainTimer
-import com.example.toDoList.databinding.ActivityMainBinding
+import com.example.start.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.fragment_start.*
 import timber.log.Timber
-import java.lang.Exception
 
+
+private const val TEXT_INPUT = "text_input"
+private const val TEXT_INPUT2 = "text_input2"
 
 class MainActivity : AppCompatActivity() {
-    val TEXT_INPUT = "text_input"
-    val TEXT_INPUT2 = "text_input2"
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration : AppBarConfiguration
     private  lateinit var timerActive: MainTimer
@@ -42,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         if(savedInstanceState != null){
             textInput.setText(savedInstanceState.getString(TEXT_INPUT))
-            textView6.setText(savedInstanceState.getString(TEXT_INPUT2))
         }
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)

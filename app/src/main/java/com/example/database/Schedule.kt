@@ -14,9 +14,6 @@ data class Schedule (
     @ColumnInfo(name = "itemName")
     val itemName: String,
 
-    @ColumnInfo(name = "executionTime")
-    val dateTime: Date,
-
     @ColumnInfo(name = "isCompleted")
     var isCompleted: Boolean = false
 )

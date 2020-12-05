@@ -1,11 +1,10 @@
-package com.example.toDoList
+package com.example.start
 
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.android.synthetic.main.fragment_start.*
 
 
 private val CORRECT_BUZZ_PATTERN = longArrayOf(100, 100, 100, 100, 100, 100)

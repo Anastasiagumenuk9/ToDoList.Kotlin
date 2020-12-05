@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/termsFragment"
-        android:name="com.example.toDoList.TermsFragment"
+        android:name="com.example.additionalContent.TermsFragment"
         android:label="@string/reply_title"
         tools:layout="@layout/fragment_terms" />
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.toDoList.AboutFragment"
+        android:name="com.example.additionalContent.AboutFragment"
         android:label="@string/reply_title"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.toDoList.StartFragment"
+        android:name="com.example.start.StartFragment"
         android:label="StartFragment" >
         <action
             android:id="@+id/action_startFragment_to_toDoListFragment"
@@ -26,12 +26,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.toDoList.SettingsFragment"
+        android:name="com.example.additionalContent.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/toDoListFragment"
-        android:name="com.example.toDoList.ToDoListFragment"
+        android:name="com.example.taskList.ToDoListFragment"
         android:label="fragment_to_do_list"
         tools:layout="@layout/fragment_to_do_list" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/createTaskFragment"
-        android:name="com.example.toDoList.CreateTaskFragment"
+        android:name="com.example.task.CreateTaskFragment"
         android:label="fragment_create_task"
         tools:layout="@layout/fragment_create_task" />
 
