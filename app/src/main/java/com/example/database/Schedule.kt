@@ -11,6 +11,9 @@ data class Schedule (
     @PrimaryKey(autoGenerate = true)
     var scheduleId: Long = 0L,
 
+    @ColumnInfo(name = "itemName")
+    val itemName: String,
+
     @ColumnInfo(name = "executionTime")
     val dateTime: Date = Calendar.getInstance().time,
 

@@ -3,6 +3,7 @@ package com.example.toDoList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.text.trimmedLength
@@ -19,7 +20,7 @@ import com.example.timer.MainTimer
 import com.example.toDoList.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.fragment_start.*
 import timber.log.Timber
-
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
