@@ -15,7 +15,7 @@ data class Schedule (
     val itemName: String,
 
     @ColumnInfo(name = "executionTime")
-    val dateTime: Date = Calendar.getInstance().time,
+    val dateTime: Date,
 
     @ColumnInfo(name = "isCompleted")
     var isCompleted: Boolean = false

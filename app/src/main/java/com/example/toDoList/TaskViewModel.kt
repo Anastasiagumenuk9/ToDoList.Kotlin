@@ -1,13 +1,18 @@
 package com.example.toDoList
 
+import android.app.Application
 import android.util.Log
 import android.view.View
 import android.widget.CalendarView
 import android.widget.EditText
-import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.database.ToDoListDatabaseDao
 
-class TaskViewModel  : ViewModel() {
+class TaskViewModel(val db : ToDoListDatabaseDao, application: Application) : AndroidViewModel(application)
+ {
     init {
         Log.i("GameViewModel", "GameViewModel created!")
     }

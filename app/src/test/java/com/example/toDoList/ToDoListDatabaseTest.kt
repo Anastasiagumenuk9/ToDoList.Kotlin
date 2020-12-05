@@ -13,6 +13,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
+import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)
@@ -41,7 +42,7 @@ class ToDoListDatabaseTest {
     @Test
     @Throws(Exception::class)
     suspend fun insertAndGetSchedule() {
-        val schedule = Schedule()
+        val schedule = Schedule(itemName = "Make title", dateTime = Date())
         toDoListDao.insert(schedule)
         val schedule1 = toDoListDao.getFirst()
         assertEquals(schedule1?.dateTime, -1)
