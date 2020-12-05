@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.helpers.Converters
 
-@Database(entities = [Schedule::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class], version = 1, exportSchema = false)
 @TypeConverters(*[Converters::class])
 abstract class ToDoListDatabase : RoomDatabase() {
 

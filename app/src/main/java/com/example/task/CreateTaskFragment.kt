@@ -28,5 +28,4 @@ class CreateTaskFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_create_task, container, false)
     }
-
 }

@@ -6,25 +6,18 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.example.task.TaskVMFactory
 import com.example.database.ToDoListDatabase
-import kotlinx.android.synthetic.main.fragment_start.*
 
 
 class StartFragment : Fragment() {
 
     private lateinit var viewModel: StartViewModel
-    private lateinit var viewModelFactory: StartViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        viewModelFactory = StartViewModelFactory()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(StartViewModel::class.java)
 
         val binding: com.example.start.databinding.FragmentStartBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_start, container, false
@@ -33,10 +26,10 @@ class StartFragment : Fragment() {
             v.findNavController().navigate(StartFragmentDirections.actionStartFragmentToToDoListFragment())
         }
 
-
         var application = requireNotNull(this.activity).application
         var dataSource = ToDoListDatabase.getInstance(application).toDoListDatabaseDao
-        val viewModelFactory = TaskVMFactory(dataSource, application)
+
+        val viewModelFactory = StartVMFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(StartViewModel::class.java)
 

@@ -1,29 +1,32 @@
 package com.example.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface ToDoListDatabaseDao {
 
     @Insert
-    suspend fun insert(schedule: Schedule)
+    suspend fun insert(schedule: Task)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg tasks: Task)
 
     @Update
-    suspend fun update(schedule: Schedule)
+    suspend fun update(schedule: Task)
 
-    @Query("SELECT * from Schedule WHERE scheduleId = :key")
-    suspend fun get(key: Long): Schedule?
+    @Query("SELECT * from Task WHERE taskId = :key")
+    suspend fun get(key: Long): Task?
 
-    @Query("DELETE FROM Schedule")
+    @Query("DELETE FROM Task")
     suspend fun clear()
 
-    @Query("SELECT * FROM Schedule ORDER BY scheduleId DESC")
-    fun getAllSchedules(): LiveData<List<Schedule>>
+    @Query("SELECT * FROM Task ORDER BY taskId DESC")
+    fun getAllSchedules(): LiveData<List<Task>>
 
-    @Query("SELECT * FROM Schedule ORDER BY scheduleId DESC LIMIT 1")
-    suspend fun getFirst(): Schedule?
+    @Query("SELECT itemName FROM Task ORDER BY taskId DESC")
+    fun getScheduleItems(): LiveData<List<String>>
+
+    @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
+    suspend fun getFirst(): Task?
 }
