@@ -21,14 +21,14 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface ToDoListApiService {
+interface ApiServices {
     @GET("albums/1/photos")
     fun getPropertiesAsync():
-        Deferred<List<PlaceholderProperty>>
-    @GET("getlist")
-    suspend fun getList() : ToDoListContainer
+            Deferred<List<PlaceholderProperty>>
 }
 
 object ToDoListApi {
-    val retrofitService : ToDoListApiService by lazy { retrofit.create(ToDoListApiService::class.java) }
+    val retrofitService: ApiServices by lazy {
+        retrofit.create(ApiServices::class.java)
+    }
 }

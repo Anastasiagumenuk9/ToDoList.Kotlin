@@ -43,5 +43,10 @@
         android:name="com.example.task.CreateTaskFragment"
         android:label="fragment_create_task"
         tools:layout="@layout/fragment_create_task" />
+    <fragment
+        android:id="@+id/placeholderFragment"
+        android:name="com.example.network.placeholder.PlaceholderFragment"
+        android:label="PlaceholderFragment"
+        tools:layout="@layout/fragment_placeholder"/>
 
 </navigation>

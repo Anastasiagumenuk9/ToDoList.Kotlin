@@ -17,6 +17,11 @@
         />
 
     <item
+        android:id="@+id/placeholderFragment"
+        android:title="Placeholder"
+        />
+
+    <item
         android:id="@+id/detail"
         android:title="Detail"
         >

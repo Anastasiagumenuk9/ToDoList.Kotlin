@@ -1,4 +1,4 @@
-package com.example.binding
+package com.example
 
 import android.widget.ImageView
 import androidx.core.net.toUri
@@ -13,9 +13,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?){
         val imgUri = it.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imgUri)
-            .apply(RequestOptions())
+            .apply(RequestOptions()
                 .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.error)
+                .error(R.drawable.error))
             .into(imgView)
     }
 }

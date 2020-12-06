@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class ScheduleRepository(private val toDoListDao: ToDoListDatabaseDao) {
 
-    val Tasks: LiveData<List<Task>> = Transformations.map(toDoListDao.getAllSchedules()) {
+    /*val Tasks: LiveData<List<Task>> = Transformations.map(toDoListDao.getAllSchedules()) {
         it.asDomainModel()
     }
 
@@ -21,5 +21,5 @@ class ScheduleRepository(private val toDoListDao: ToDoListDatabaseDao) {
             val list = ToDoListApi.retrofitService.getList()
             toDoListDao.insertAll(*list.asDatabaseModel())
         }
-    }
+    }*/
 }

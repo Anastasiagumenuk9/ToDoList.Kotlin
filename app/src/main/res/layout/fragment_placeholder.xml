@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.network.placeholder.PlaceholderViewModel"/>
+            type="com.example.network.placeholder.PlaceholderViewModel" />
     </data>
 
     <ScrollView
