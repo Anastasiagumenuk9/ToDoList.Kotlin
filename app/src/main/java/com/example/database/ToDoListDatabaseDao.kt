@@ -10,7 +10,7 @@ interface ToDoListDatabaseDao {
     suspend fun insert(schedule: Task)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg tasks: Task)
+    fun insertAllTasks(vararg tasks: Task)
 
     @Update
     suspend fun update(schedule: Task)
@@ -29,4 +29,10 @@ interface ToDoListDatabaseDao {
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
     suspend fun getFirst(): Task?
+
+    @Query("select * from databasevideo")
+    fun getVideos(): LiveData<List<DatabaseVideo>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllVideos(vararg videos: DatabaseVideo)
 }

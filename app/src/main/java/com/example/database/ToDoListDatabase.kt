@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.helpers.Converters
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class, DatabaseVideo::class], version = 1, exportSchema = false)
 @TypeConverters(*[Converters::class])
 abstract class ToDoListDatabase : RoomDatabase() {
 
@@ -29,7 +29,7 @@ abstract class ToDoListDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         ToDoListDatabase::class.java,
-                        "sleep_history_database"
+                        "to_do_list_database"
                     )
 
                         .fallbackToDestructiveMigration()
