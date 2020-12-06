@@ -1,4 +1,4 @@
-package com.example
+package com.example.binding
 
 import android.widget.ImageView
 import androidx.core.net.toUri
