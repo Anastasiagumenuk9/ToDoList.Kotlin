@@ -38,8 +38,8 @@ class ToDoListFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(TaskListViewModel::class.java)
 
-        val listView: ListView? = container?.findViewById(R.id.listView)
-        taskList = viewModel.GetAllTasks()
+        /*val listView: ListView? = container?.findViewById(R.id.listView)
+        taskList = viewModel.GetAllTasks()*/
         //val arrayAdapter: ArrayAdapter<*>
         //var arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskList)
         /*arrayAdapter = MyListAdapter(this, taskList, taskList)
