@@ -15,6 +15,9 @@ interface ToDoListDatabaseDao {
     @Update
     suspend fun update(schedule: Task)
 
+    @Query("DELETE FROM task")
+    suspend fun deleteAllTasks()
+
     @Query("SELECT * from Task WHERE taskId = :key")
     suspend fun get(key: Long): Task?
 
@@ -22,7 +25,7 @@ interface ToDoListDatabaseDao {
     suspend fun clear()
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC")
-    fun getAllSchedules(): LiveData<List<Task>>
+    fun getAllTasks(): LiveData<List<Task>>
 
     @Query("SELECT itemName FROM Task ORDER BY taskId DESC")
     fun getScheduleItems(): LiveData<List<String>>

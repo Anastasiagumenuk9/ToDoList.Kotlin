@@ -26,12 +26,12 @@ class StartFragment : Fragment() {
             v.findNavController().navigate(StartFragmentDirections.actionStartFragmentToToDoListFragment())
         }
 
-        var application = requireNotNull(this.activity).application
+        /*var application = requireNotNull(this.activity).application
         var dataSource = ToDoListDatabase.getInstance(application).toDoListDatabaseDao
 
         val viewModelFactory = StartVMFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(StartViewModel::class.java)
+            .get(StartViewModel::class.java)*/
 
         setHasOptionsMenu(true)
         return binding.root
