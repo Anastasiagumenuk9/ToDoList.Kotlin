@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="@{viewModel.property.itemName}"
+                android:text="@{viewModel.property.title}"
                 android:textColor="#de000000"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

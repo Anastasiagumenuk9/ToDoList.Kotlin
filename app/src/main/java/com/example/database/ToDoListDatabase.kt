@@ -16,30 +16,17 @@ abstract class ToDoListDatabase : RoomDatabase() {
     companion object {
 
         @Volatile
-        private var INSTANCE: ToDoListDatabase? = null
-
+        private lateinit var INSTANCE: ToDoListDatabase
 
         fun getInstance(context: Context): ToDoListDatabase {
-
-            synchronized(this) {
-
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
+            synchronized(ToDoListDatabase::class.java) {
+                if (!::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
                         ToDoListDatabase::class.java,
-                        "to_do_list_database"
-                    )
-
-                        .fallbackToDestructiveMigration()
-                        .build()
-
-                    INSTANCE = instance
+                        "ToDoListDatabase").build()
                 }
-
-                return instance
             }
+            return INSTANCE
         }
     }
 }
