@@ -14,9 +14,7 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
     private val database = getInstance(application)
     private val videosRepository = VideosRepository(database)
 
-    /**
-     * init{} is called immediately when this ViewModel is created.
-     */
+
     init {
         viewModelScope.launch {
             videosRepository.refreshVideos()
