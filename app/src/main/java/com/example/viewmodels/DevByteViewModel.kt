@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.database.ToDoListDatabase.Companion.getDatabase
+import com.example.database.ToDoListDatabase.Companion.getInstance
 import com.example.repository.VideosRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 
 class DevByteViewModel(application: Application) : AndroidViewModel(application) {
 
-    val applicationScope = CoroutineScope(SupervisorJob())
-    private val database = getDatabase(application, applicationScope)
+    private val database = getInstance(application)
     private val videosRepository = VideosRepository(database)
 
 

@@ -11,3 +11,9 @@ data class Video(val title: String,
     val shortDescription: String
         get() = description.smartTruncate(200)
 }
+
+data class Task(
+    val taskId: Long = 0L,
+    val itemName: String,
+    val isCompleted: Boolean = false
+)

@@ -16,42 +16,18 @@ abstract class ToDoListDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: ToDoListDatabase? = null
+        private lateinit var INSTANCE : ToDoListDatabase
+        fun getInstance(context: Context) : ToDoListDatabase {
+            synchronized(ToDoListDatabase::class.java) {
 
-        fun getDatabase(
-            context: Context,
-            scope: CoroutineScope
-        ): ToDoListDatabase {
-
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    ToDoListDatabase::class.java,
-                    "task_database"
-                )
-
-                    .fallbackToDestructiveMigration()
-                    .addCallback(TaskDatabaseCallback(scope))
-                    .build()
-                INSTANCE = instance
-                // return instance
-                instance
-            }
-        }
-
-        private class TaskDatabaseCallback(
-            private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
-
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
-                INSTANCE?.let { database ->
-                    scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.toDoListDatabaseDao())
-                    }
+                if (! ::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        ToDoListDatabase::class.java,
+                        "task_database"
+                    ).fallbackToDestructiveMigration().build()
                 }
+                return INSTANCE
             }
         }
 

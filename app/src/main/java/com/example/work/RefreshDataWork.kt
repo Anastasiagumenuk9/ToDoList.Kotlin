@@ -3,7 +3,7 @@ package com.example.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.database.ToDoListDatabase.Companion.getDatabase
+import com.example.database.ToDoListDatabase.Companion.getInstance
 import com.example.repository.VideosRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -18,7 +18,7 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters):
     }
 
     override suspend fun doWork(): Result {
-        val database = getDatabase(applicationContext, applicationScope)
+        val database = getInstance(applicationContext)
         val repository = VideosRepository(database)
         return try {
             repository.refreshVideos()

@@ -5,20 +5,21 @@ import android.util.Log
 import android.view.View
 import android.widget.CalendarView
 import android.widget.EditText
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.database.Task
 import com.example.database.ToDoListDatabaseDao
+import com.example.database.asTaskDomainModel
 import com.example.repository.TaskRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
+class TaskViewModel(
+    val db : ToDoListDatabaseDao,
+    application: Application
+) : AndroidViewModel(application){
 
-    val allWords: LiveData<List<Task>> = repository.allTasks
-
-    fun insert(task: Task) = viewModelScope.launch {
-        repository.insert(task)
+    val tasks = Transformations.map(db.getAllTasks()) {
+        Timber.i("Tasks count: " + it.count().toString())
+        it.asTaskDomainModel()
     }
 }

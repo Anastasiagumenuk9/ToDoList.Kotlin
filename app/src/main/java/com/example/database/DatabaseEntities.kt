@@ -28,7 +28,16 @@ data class DatabaseVideo constructor(
     val description: String,
     val thumbnail: String)
 
-fun List<DatabaseVideo>.asDomainModel(): List<Video> {
+fun List<Task>.asTaskDomainModel(): List<com.example.domain.Task> {
+    return map {
+        com.example.domain.Task(
+            taskId = it.taskId,
+            itemName = it.itemName,
+            isCompleted = it.isCompleted)
+    }
+}
+
+fun List<DatabaseVideo>.asVideoDomainModel(): List<Video> {
     return map {
         Video(
             url = it.url,

@@ -9,9 +9,9 @@ import timber.log.Timber
 
 class PusherApplication : Application() {
 
-    val applicationScope = CoroutineScope(SupervisorJob())
+    /*val applicationScope = CoroutineScope(SupervisorJob())
     val database by lazy { ToDoListDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { TaskRepository(database.toDoListDatabaseDao()) }
+    val repository by lazy { TaskRepository(database.toDoListDatabaseDao()) }*/
 
     override fun onCreate() {
         super.onCreate()
