@@ -73,9 +73,9 @@ class ToDoListFragment : Fragment(), LifecycleObserver,
 
         button.setOnClickListener {
             Timber.i("setOnClickListener" + it.tag)
-            var id : Long = it.tag as Long
+            //var id : Long = it.tag as Long
             Timber.i("setOnClickListener2" + it.tag)
-            toDoListViewModel.deleteTask(id)
+            //toDoListViewModel.deleteTask(id)
         }
         setHasOptionsMenu(true)
         return binding.root
