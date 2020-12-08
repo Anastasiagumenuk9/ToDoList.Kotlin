@@ -12,8 +12,6 @@ import com.example.database.ToDoListDatabase
 
 class StartFragment : Fragment() {
 
-    private lateinit var viewModel: StartViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,13 +23,6 @@ class StartFragment : Fragment() {
         binding.button.setOnClickListener { v: View ->
             v.findNavController().navigate(StartFragmentDirections.actionStartFragmentToToDoListFragment())
         }
-
-        var application = requireNotNull(this.activity).application
-        var dataSource = ToDoListDatabase.getInstance(application).toDoListDatabaseDao
-
-        val viewModelFactory = StartVMFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(StartViewModel::class.java)
 
         setHasOptionsMenu(true)
         return binding.root

@@ -5,17 +5,21 @@ import android.util.Log
 import android.view.View
 import android.widget.CalendarView
 import android.widget.EditText
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.*
+import com.example.database.Task
 import com.example.database.ToDoListDatabaseDao
+import com.example.database.asTaskDomainModel
+import com.example.repository.TaskRepository
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class TaskViewModel(val db : ToDoListDatabaseDao, application: Application) : AndroidViewModel(application)
- {
-    init {
-        Log.i("GameViewModel", "GameViewModel created!")
-    }
+class TaskViewModel(
+    val db : ToDoListDatabaseDao,
+    application: Application
+) : AndroidViewModel(application){
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("GameViewModel", "GameViewModel destroyed!")
+    val tasks = Transformations.map(db.getAllTasks()) {
+        Timber.i("Tasks count: " + it.count().toString())
+        it.asTaskDomainModel()
     }
 }

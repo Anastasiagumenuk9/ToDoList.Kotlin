@@ -6,14 +6,17 @@ import androidx.room.*
 @Dao
 interface ToDoListDatabaseDao {
 
-    @Insert
-    suspend fun insert(schedule: Task)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg tasks: Task)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(task: Task)
 
     @Update
-    suspend fun update(schedule: Task)
+    suspend fun update(task: Task)
+
+    @Query("DELETE FROM task WHERE taskId = :key")
+    suspend fun deleteTask(key: Long)
+
+    @Query("DELETE FROM task")
+    suspend fun deleteAllTasks()
 
     @Query("SELECT * from Task WHERE taskId = :key")
     suspend fun get(key: Long): Task?
@@ -21,12 +24,19 @@ interface ToDoListDatabaseDao {
     @Query("DELETE FROM Task")
     suspend fun clear()
 
+    @Transaction
     @Query("SELECT * FROM Task ORDER BY taskId DESC")
-    fun getAllSchedules(): LiveData<List<Task>>
+    fun getAllTasks(): LiveData<List<Task>>
 
     @Query("SELECT itemName FROM Task ORDER BY taskId DESC")
     fun getScheduleItems(): LiveData<List<String>>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
     suspend fun getFirst(): Task?
+
+    @Query("select * from databasevideo")
+    fun getVideos(): LiveData<List<DatabaseVideo>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllVideos(vararg videos: DatabaseVideo)
 }

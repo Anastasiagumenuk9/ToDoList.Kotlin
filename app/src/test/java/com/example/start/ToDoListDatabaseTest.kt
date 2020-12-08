@@ -3,7 +3,7 @@ package com.example.start
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.database.Schedule
+import com.example.database.Task
 import com.example.database.ToDoListDatabase
 import com.example.database.ToDoListDatabaseDao
 
@@ -30,7 +30,7 @@ class ToDoListDatabaseTest {
 
             .allowMainThreadQueries()
             .build()
-        toDoListDao = db.toDoListDatabaseDao
+        toDoListDao = db.toDoListDatabaseDao()
     }
 
     @After
@@ -42,9 +42,9 @@ class ToDoListDatabaseTest {
     @Test
     @Throws(Exception::class)
     suspend fun insertAndGetSchedule() {
-        val schedule = Schedule(itemName = "Make title", dateTime = Date())
+        val schedule = Task(itemName = "Make title", isCompleted = false)
         toDoListDao.insert(schedule)
         val schedule1 = toDoListDao.getFirst()
-        assertEquals(schedule1?.dateTime, -1)
+        assertEquals(schedule1?.isCompleted, false)
     }
 }

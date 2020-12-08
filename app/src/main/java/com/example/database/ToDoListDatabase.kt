@@ -4,42 +4,42 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.example.helpers.Converters
+import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
-@TypeConverters(*[Converters::class])
+@Database(entities = [Task::class, DatabaseVideo::class], version = 1)
 abstract class ToDoListDatabase : RoomDatabase() {
 
-    abstract val toDoListDatabaseDao: ToDoListDatabaseDao
+    abstract fun toDoListDatabaseDao(): ToDoListDatabaseDao
 
     companion object {
-
         @Volatile
-        private var INSTANCE: ToDoListDatabase? = null
+        private lateinit var INSTANCE : ToDoListDatabase
+        fun getInstance(context: Context) : ToDoListDatabase {
+            synchronized(ToDoListDatabase::class.java) {
 
-
-        fun getInstance(context: Context): ToDoListDatabase {
-
-            synchronized(this) {
-
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
+                if (! ::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         ToDoListDatabase::class.java,
-                        "sleep_history_database"
-                    )
-
-                        .fallbackToDestructiveMigration()
-                        .build()
-
-                    INSTANCE = instance
+                        "task_database"
+                    ).fallbackToDestructiveMigration().build()
                 }
-
-                return instance
+                return INSTANCE
             }
+        }
+
+        suspend fun populateDatabase(toDoListDatabaseDao: ToDoListDatabaseDao) {
+            // Start the app with a clean database every time.
+            // Not needed if you only populate on creation.
+            toDoListDatabaseDao.deleteAllTasks()
+
+            var task = Task(itemName = "kozi", isCompleted = false)
+            toDoListDatabaseDao.insert(task)
+            task = Task(itemName = "kozi", isCompleted = false)
+            toDoListDatabaseDao.insert(task)
         }
     }
 }

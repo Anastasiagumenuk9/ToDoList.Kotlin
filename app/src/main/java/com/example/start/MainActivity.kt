@@ -1,7 +1,8 @@
 package com.example.start
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -9,10 +10,12 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.example.start.databinding.ActivityMainBinding
+import com.example.task.TaskVMFactory
+import com.example.task.TaskViewModel
 import com.example.timer.ActiveTimer
 import com.example.timer.DestroyTimer
 import com.example.timer.MainTimer
-import com.example.start.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.fragment_start.*
 import timber.log.Timber
 
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var timerActive: MainTimer
     private  lateinit var timerToDestroy: MainTimer
     private var counter = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

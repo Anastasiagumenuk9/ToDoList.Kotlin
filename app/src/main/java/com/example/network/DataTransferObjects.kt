@@ -1,32 +1,42 @@
 package com.example.network
 
+import com.example.database.DatabaseVideo
 import com.example.database.Task
+import com.example.domain.Video
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ToDoListContainer(val notes: List<NetworkTask>)
+data class NetworkVideoContainer(val videos: List<NetworkVideo>)
+
 
 @JsonClass(generateAdapter = true)
-data class NetworkTask(
-    val taskId : Long,
-    val itemName : String,
-    val isCompleted : Boolean)
+data class NetworkVideo(
+    val title: String,
+    val description: String,
+    val url: String,
+    val updated: String,
+    val thumbnail: String,
+    val closedCaptions: String?)
 
 
-fun ToDoListContainer.asDatabaseModel(): Array<Task> {
-    return notes.map {
-        Task (
-            taskId = it.taskId,
-            itemName = it.itemName,
-            isCompleted = it.isCompleted)
-    }.toTypedArray()
+fun NetworkVideoContainer.asDomainModel(): List<Video> {
+    return videos.map {
+        Video(
+            title = it.title,
+            description = it.description,
+            url = it.url,
+            updated = it.updated,
+            thumbnail = it.thumbnail)
+    }
 }
 
-fun ToDoListContainer.asDomainModel(): List<Task> {
-    return notes.map {
-        Task(
-            taskId = it.taskId,
-            itemName = it.itemName,
-            isCompleted = it.isCompleted)
-    }
+fun NetworkVideoContainer.asDatabaseModel(): Array<DatabaseVideo> {
+    return videos.map {
+        DatabaseVideo(
+            title = it.title,
+            description = it.description,
+            url = it.url,
+            updated = it.updated,
+            thumbnail = it.thumbnail)
+    }.toTypedArray()
 }
