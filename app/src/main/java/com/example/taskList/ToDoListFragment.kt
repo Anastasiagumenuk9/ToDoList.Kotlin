@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -16,6 +18,7 @@ import com.example.database.ToDoListDatabase
 import com.example.helpers.TaskAdapter
 import com.example.start.R
 import com.example.start.databinding.FragmentToDoListBinding
+import kotlinx.android.synthetic.main.fragment_task_item.*
 import timber.log.Timber
 
 
@@ -38,10 +41,12 @@ class ToDoListFragment : Fragment(), LifecycleObserver,
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_to_do_list,container,false)
+            R.layout.fragment_to_do_list, container, false)
         binding.floatingActionButton.setOnClickListener { v: View ->
             v.findNavController().navigate(ToDoListFragmentDirections.actionToDoListFragmentToCreateTaskFragment())
         }
+
+
         var application = requireNotNull(this.activity).application
         var dataSource = ToDoListDatabase.getInstance(application).toDoListDatabaseDao()
         val viewModelFactory =
@@ -63,6 +68,15 @@ class ToDoListFragment : Fragment(), LifecycleObserver,
             }
         })
 
+        var bindingItem = inflater.inflate(R.layout.fragment_task_item, container, false)
+        var button = bindingItem.findViewById(R.id.button2) as Button
+
+        button.setOnClickListener {
+            Timber.i("setOnClickListener" + it.tag)
+            var id : Long = it.tag as Long
+            Timber.i("setOnClickListener2" + it.tag)
+            toDoListViewModel.deleteTask(id)
+        }
         setHasOptionsMenu(true)
         return binding.root
     }

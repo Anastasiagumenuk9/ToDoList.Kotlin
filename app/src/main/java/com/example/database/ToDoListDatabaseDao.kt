@@ -12,6 +12,9 @@ interface ToDoListDatabaseDao {
     @Update
     suspend fun update(task: Task)
 
+    @Query("DELETE FROM task WHERE taskId = :key")
+    suspend fun deleteTask(key: Long)
+
     @Query("DELETE FROM task")
     suspend fun deleteAllTasks()
 

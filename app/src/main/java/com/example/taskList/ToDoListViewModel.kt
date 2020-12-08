@@ -42,6 +42,12 @@ class ToDoListViewModel(
         }
     }
 
+    fun deleteTask(id: Long) {
+        viewModelScope.launch {
+                db.deleteTask(id)
+        }
+    }
+
     suspend fun clear()
     {
         return withContext(Dispatchers.IO) {
