@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/startConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_end="@dimen/material_emphasis_high_type">
 
         <TextView
             android:id="@+id/textView2"
@@ -39,6 +40,7 @@
 
         <Button
             android:id="@+id/button"
+            android:tint="?colorOnPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
