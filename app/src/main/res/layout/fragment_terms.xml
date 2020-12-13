@@ -11,6 +11,7 @@
 
         <TextView
             android:id="@+id/textView2"
+            android:contentDescription="@string/app_name"
             android:layout_width="283dp"
             android:layout_height="51dp"
             android:layout_marginStart="54dp"
@@ -18,7 +19,8 @@
             android:layout_marginEnd="56dp"
             android:layout_marginBottom="33dp"
             android:text="Terms of Service"
-            style="@style/TextAppearance.Title"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +28,7 @@
 
         <TextView
             android:id="@+id/textView"
+            android:contentDescription="@string/app_name"
             android:layout_width="295dp"
             android:layout_height="471dp"
             android:layout_marginStart="54dp"
